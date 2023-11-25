@@ -1,0 +1,154 @@
+pandas 1 and 2
+
+
+
+
+import pandas as pd
+order=pd.read_table('https://raw.githubusercontent.com/justmarkham/pandas-videos/master/data/u.user')
+print("over view of  dataframe")
+print(order.head())
+print("shapes")
+print(order.shape)
+user_cols=['user_id','age','gender','occupation','zip_code']
+users=pd.read_table('https://raw.githubusercontent.com/justmarkham/pandas-videos/master/data/u.user',sep='|',header=None,names=user_cols)
+print("data frame after modifying")
+print(users.head())
+
+
+
+
+
+output
+
+over view of  dataframe
+   1|24|M|technician|85711
+0       2|53|F|other|94043
+1      3|23|M|writer|32067
+2  4|24|M|technician|43537
+3       5|33|F|other|15213
+4   6|42|M|executive|98101
+shapes
+(942, 1)
+data frame after modifying
+   user_id  age gender  occupation zip_code
+0        1   24      M  technician    85711
+1        2   53      F       other    94043
+2        3   23      M      writer    32067
+3        4   24      M  technician    43537
+4        5   33      F       other    15213
+
+
+
+
+program 2
+
+
+import pandas as pd
+ufo=pd.read_csv('https://raw.githubusercontent.com/justmarkham/pandas-videos/master/data/ufo.csv')
+print("over views of ufo data reports")
+print(ufo.head())
+print()
+print('city series stored')
+print(ufo.City.sort_values())
+print()
+ufo['Location']=ufo.City+','+ufo.State
+print("after creating new loocation series")
+print(ufo.head())
+print()
+print("calculate summary series")
+print(ufo.describe())
+print()
+print("column name of datafframe after :",ufo.columns)
+print()
+ufo.rename(columns={'Colors  reports':'Colors_Reported','shape reported':'shape_reported'},inplace=True)
+print("columns name of ufo dataframe after rename two column names",ufo.columns)
+print()
+ufo.drop(['City','State'],axis=1,inplace=True)
+print("column name of ufo dataframes after removing two columns(city,state)",ufo.columns)
+print()
+ufo.drop([0,1],axis=0,inplace=True)
+print("ufo dataframe after deleting first row")
+print(ufo.head())
+
+
+
+
+
+over views of ufo data reports
+                   City Colors Reported Shape Reported State             Time
+0                Ithaca             NaN       TRIANGLE    NY   6/1/1930 22:00
+1           Willingboro             NaN          OTHER    NJ  6/30/1930 20:00
+2               Holyoke             NaN           OVAL    CO  2/15/1931 14:00
+3               Abilene             NaN           DISK    KS   6/1/1931 13:00
+4  New York Worlds Fair             NaN          LIGHT    NY  4/18/1933 19:00
+
+city series stored
+1761     Abbeville
+17809     Aberdeen
+2297      Aberdeen
+9404      Aberdeen
+389       Aberdeen
+           ...    
+12441          NaN
+15767          NaN
+15812          NaN
+16054          NaN
+16608          NaN
+Name: City, Length: 18241, dtype: object
+
+after creating new loocation series
+                   City Colors Reported Shape Reported State             Time  \
+0                Ithaca             NaN       TRIANGLE    NY   6/1/1930 22:00   
+1           Willingboro             NaN          OTHER    NJ  6/30/1930 20:00   
+2               Holyoke             NaN           OVAL    CO  2/15/1931 14:00   
+3               Abilene             NaN           DISK    KS   6/1/1931 13:00   
+4  New York Worlds Fair             NaN          LIGHT    NY  4/18/1933 19:00   
+
+                  Location  
+0                Ithaca,NY  
+1           Willingboro,NJ  
+2               Holyoke,CO  
+3               Abilene,KS  
+4  New York Worlds Fair,NY  
+
+calculate summary series
+           City Colors Reported Shape Reported  State              Time  \
+count     18215            2882          15597  18241             18241   
+unique     6475              27             27     52             16145   
+top     Seattle             RED          LIGHT     CA  11/16/1999 19:00   
+freq        187             780           2803   2529                27   
+
+          Location  
+count        18215  
+unique        8028  
+top     Seattle,WA  
+freq           187  
+
+column name of datafframe after : Index(['City', 'Colors Reported', 'Shape Reported', 'State', 'Time',
+       'Location'],
+      dtype='object')
+
+columns name of ufo dataframe after rename two column names Index(['City', 'Colors Reported', 'Shape Reported', 'State', 'Time',
+       'Location'],
+      dtype='object')
+
+column name of ufo dataframes after removing two columns(city,state) Index(['Colors Reported', 'Shape Reported', 'Time', 'Location'], dtype='object')
+
+ufo dataframe after deleting first row
+  Colors Reported Shape Reported             Time                 Location
+2             NaN           OVAL  2/15/1931 14:00               Holyoke,CO
+3             NaN           DISK   6/1/1931 13:00               Abilene,KS
+4             NaN          LIGHT  4/18/1933 19:00  New York Worlds Fair,NY
+5             NaN           DISK  9/15/1934 15:30           Valley City,ND
+6             NaN         CIRCLE   6/15/1935 0:00           Crater Lake,CA
+
+
+
+
+
+
+
+
+
+
+
